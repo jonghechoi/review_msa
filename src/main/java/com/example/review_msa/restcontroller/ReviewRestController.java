@@ -3,6 +3,7 @@ package com.example.review_msa.restcontroller;
 import com.example.review_msa.dto.ReviewDto;
 import com.example.review_msa.service.ReviewServiceImpl;
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ public class ReviewRestController {
     /**
      *	Index review
      */
+    @CrossOrigin(origins = "*")
     @GetMapping("index_review")
     public List<ReviewDto> index_review() {
         List<ReviewDto> list = reviewService.reviewIndex();
