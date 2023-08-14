@@ -1,4 +1,4 @@
-package com.example.review_msa;
+package com.springboot.review_msa;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

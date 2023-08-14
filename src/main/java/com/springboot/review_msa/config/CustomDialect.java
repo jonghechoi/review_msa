@@ -1,4 +1,4 @@
-package com.example.review_msa.jpa;
+package com.springboot.review_msa.config;
 
 import org.hibernate.dialect.Oracle10gDialect;
 import org.hibernate.dialect.function.SQLFunctionTemplate;

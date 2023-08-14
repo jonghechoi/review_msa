@@ -1,10 +1,9 @@
-package com.example.review_msa.entity;
+package com.springboot.review_msa.inner.domain;
 
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -14,7 +13,7 @@ import javax.persistence.Table;
 @Getter
 @Table(name="REVIEW")
 @NoArgsConstructor
-public class ReviewEntity {
+public class Review {
     @Id
     String reviewid;
     String reviewcontent;
@@ -30,8 +29,8 @@ public class ReviewEntity {
 
     @Builder
     @QueryProjection
-    public ReviewEntity(String reviewid, String reviewcontent, String reviewcreatedate, String reviewmodifydate, String sid,
-                        String mid, String rid, String reviewphoto, String reviewsphoto, String reviewmain, int reviewstar) {
+    public Review(String reviewid, String reviewcontent, String reviewcreatedate, String reviewmodifydate, String sid,
+                  String mid, String rid, String reviewphoto, String reviewsphoto, String reviewmain, int reviewstar) {
         this.reviewid = reviewid;
         this.reviewcontent = reviewcontent;
         this.reviewcreatedate = reviewcreatedate;

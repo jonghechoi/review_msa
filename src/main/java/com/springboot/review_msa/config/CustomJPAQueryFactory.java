@@ -1,7 +1,6 @@
-package com.example.review_msa.factory;
+package com.springboot.review_msa.config;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import org.springframework.context.annotation.Bean;
 
 import javax.persistence.EntityManager;
 

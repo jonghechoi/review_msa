@@ -1,4 +1,4 @@
-package com.example.review_msa.entity;
+package com.springboot.review_msa.inner.domain;
 
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Builder;
@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Getter
 @Table(name="MEMBER")
 @NoArgsConstructor
-public class MemberEntity {
+public class Member {
     @Id
     String mid;
     String memberid;
@@ -31,8 +31,8 @@ public class MemberEntity {
 
     @Builder
     @QueryProjection
-    public MemberEntity(String mid, String memberid, String mname, String mpass, String memail, String kemail, String tel,
-                        String mphone, String mcreatedate, String mmodifyDate, String roleid, String deleteyn, String beforempass) {
+    public Member(String mid, String memberid, String mname, String mpass, String memail, String kemail, String tel,
+                  String mphone, String mcreatedate, String mmodifyDate, String roleid, String deleteyn, String beforempass) {
         this.mid = mid;
         this.memberid = memberid;
         this.mname = mname;
