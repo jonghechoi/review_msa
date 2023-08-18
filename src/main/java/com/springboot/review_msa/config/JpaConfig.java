@@ -2,8 +2,10 @@ package com.springboot.review_msa.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import com.springboot.review_msa.entity.QMemberEntity;
-import com.springboot.review_msa.entity.QReviewEntity;
+import com.springboot.review_msa.domain.QMember;
+import com.springboot.review_msa.domain.QReview;
+import com.springboot.review_msa.domain.QReservation;
+import com.springboot.review_msa.domain.QShop;
 
 import javax.persistence.EntityManager;
 
@@ -15,12 +17,23 @@ public class JpaConfig {
     }
 
     @Bean
-    public QReviewEntity qReviewEntity() {
-        return QReviewEntity.reviewEntity;
+    public EntityManager entityManager(EntityManager entityManager) {
+        return entityManager;
     }
 
     @Bean
-    public QMemberEntity qMemberEntity() {
-        return QMemberEntity.memberEntity;
+    public QReview qReview() {
+        return QReview.review;
     }
+
+    @Bean
+    public QMember qMember() {
+        return QMember.member;
+    }
+
+    @Bean
+    public QReservation qReservation() { return QReservation.reservation; }
+
+    @Bean
+    public QShop qShop() { return QShop.shop; }
 }

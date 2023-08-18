@@ -1,6 +1,6 @@
-package com.springboot.review_msa.inner.service;
+package com.springboot.review_msa.service;
 
-import com.springboot.review_msa.outer.dto.ReviewDTO;
+import com.springboot.review_msa.web.dto.ReviewDTO;
 
 import java.util.List;
 

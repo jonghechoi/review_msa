@@ -1,4 +1,4 @@
-package com.springboot.review_msa.inner.domain;
+package com.springboot.review_msa.domain;
 
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Builder;
