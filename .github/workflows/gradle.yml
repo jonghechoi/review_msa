@@ -49,5 +49,5 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: SCP transfer
-        run: scp -o UserKnownHostsFile=/root/.ssh/known_hosts -P 2222 *.war ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/usr/local/tomcat/webapps/
+        run: scp -o UserKnownHostsFile=/${{ secrets.SSH_USER }}/.ssh/known_hosts -P 2222 *.war ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/usr/local/tomcat/webapps/
       
