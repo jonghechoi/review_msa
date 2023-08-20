@@ -40,23 +40,23 @@ public class Review {
     private String reviewmain;
     private double reviewstar;
 
-    @Builder
-    @QueryProjection
-    public Review(Long id, String reviewid, String reviewcontent, String reviewcreatedate, String reviewmodifydate, String sid,
-                  String mid, String rid, String reviewphoto, String reviewsphoto, String reviewmain, double reviewstar) {
-        this.id = id;
-        this.reviewid = reviewid;
-        this.reviewcontent = reviewcontent;
-        this.reviewcreatedate = reviewcreatedate;
-        this.reviewmodifydate = reviewmodifydate;
-        this.sid = sid;
-        this.mid = mid;
-        this.rid = rid;
-        this.reviewphoto = reviewphoto;
-        this.reviewsphoto = reviewsphoto;
-        this.reviewmain = reviewmain;
-        this.reviewstar = reviewstar;
-    }
+//    @Builder
+//    @QueryProjection
+//    public Review(Long id, String reviewid, String reviewcontent, String reviewcreatedate, String reviewmodifydate, String sid,
+//                  String mid, String rid, String reviewphoto, String reviewsphoto, String reviewmain, double reviewstar) {
+//        this.id = id;
+//        this.reviewid = reviewid;
+//        this.reviewcontent = reviewcontent;
+//        this.reviewcreatedate = reviewcreatedate;
+//        this.reviewmodifydate = reviewmodifydate;
+//        this.sid = sid;
+//        this.mid = mid;
+//        this.rid = rid;
+//        this.reviewphoto = reviewphoto;
+//        this.reviewsphoto = reviewsphoto;
+//        this.reviewmain = reviewmain;
+//        this.reviewstar = reviewstar;
+//    }
 
     public static Review createReview(ReviewDTO reviewDTO, EntityManager entityManager) {
         Query query = entityManager.createNativeQuery("SELECT SEQU_REVIEW_RID.NEXTVAL FROM DUAL");

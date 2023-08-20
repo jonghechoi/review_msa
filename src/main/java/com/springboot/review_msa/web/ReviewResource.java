@@ -40,7 +40,9 @@ public class ReviewResource {
 //            redirectAttributes.addFlashAttribute("reviewWrite", "ok");
 //            return "redirect:/mydining_visited";
 //        }
-        return "redirect:/mydining_visited";
+
+        //return "redirect:/mydining_visited";
+        return "hi~";
     }
 
     /**
