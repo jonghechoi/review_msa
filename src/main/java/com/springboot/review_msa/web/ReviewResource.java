@@ -42,7 +42,7 @@ public class ReviewResource {
 //        }
 
         //return "redirect:/mydining_visited";
-        return "hi~~~~~~~";
+        return "hi~~~~~~~~";
     }
 
     /**
