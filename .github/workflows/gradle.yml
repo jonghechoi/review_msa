@@ -54,6 +54,6 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.4
         with:
           ssh-agent-cmd: rm -rf /usr/local/tomcat/webapps/*
-      # - name: SCP transfer
-      #   run: scp -P 2222 *.war ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/usr/local/tomcat/webapps/
+      - name: SCP transfer
+        run: scp -P 2222 *.war ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/usr/local/tomcat/webapps/
       
