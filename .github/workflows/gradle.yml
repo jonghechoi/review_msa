@@ -45,7 +45,7 @@ jobs:
         with:
           name: cicdsample
       - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.5.4
+        uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
           ssh-agent-cmd: rm -rf /usr/local/tomcat/webapps/*
