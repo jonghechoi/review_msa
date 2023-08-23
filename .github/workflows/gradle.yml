@@ -50,7 +50,7 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: Setup known_hosts
         run: ssh-keyscan -p 2222 -t ssh-rsa ${{ secrets.SERVER_IP }} >> /home/runner/.ssh/known_hosts
-      - name: Delete Original WAR
+      - name: Delete Original WAR2
         with:
           ssh-agent-cmd: rm -rf /usr/local/tomcat/webapps/*
       # - name: SCP transfer
