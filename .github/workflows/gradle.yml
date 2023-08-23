@@ -51,7 +51,7 @@ jobs:
       - name: Setup known_hosts
         run: ssh-keyscan -p 2222 -t ssh-rsa ${{ secrets.SERVER_IP }} >> /home/runner/.ssh/known_hosts
       - name: Delete Original WAR
-        run: ssh -P 2222 ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} && rm -rf /usr/local/tomcat/webapps/*
+        run: rm -rf /usr/local/tomcat/webapps/*
       - name: SCP transfer
         run: scp -P 2222 *.war ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/usr/local/tomcat/webapps/
       
