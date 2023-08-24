@@ -1,9 +1,7 @@
 package com.springboot.review_msa.repository;
 
-import com.querydsl.sql.SQLExpressions;
 import com.springboot.review_msa.domain.QReservation;
 import com.springboot.review_msa.domain.QShop;
-import com.springboot.review_msa.domain.Review;
 import com.springboot.review_msa.web.dto.ReviewDTO;
 import com.springboot.review_msa.domain.QMember;
 import com.springboot.review_msa.domain.QReview;
@@ -11,13 +9,10 @@ import com.springboot.review_msa.config.CustomJPAQueryFactory;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.Expressions;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
@@ -45,7 +40,8 @@ public class ReviewRepository {
                             qReview.mid,
                             qReview.rid,
                             qReview.reviewphoto,
-                            qReview.reviewsphoto)
+                            qReview.reviewsphoto,
+                            qMember.mname)
                 )
                 .from(qReview)
                 .innerJoin(qMember).on(qReview.mid.eq(qMember.mid))

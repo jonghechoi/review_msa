@@ -4,10 +4,7 @@ import com.springboot.review_msa.web.dto.ReviewDTO;
 import com.springboot.review_msa.service.impl.ReviewServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -20,12 +17,12 @@ public class ReviewResourceRest {
     /**
      *	Index review
      */
-    //@CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "*")
     @GetMapping("index_review")
     public List<ReviewDTO> index_review() {
         List<ReviewDTO> list = reviewService.reviewIndex();
         list.stream()
-            .forEach(review -> System.out.println("content --> " + review.getReviewcontent()));
+            .forEach(review -> System.out.println("mname --> " + review.getMname()+ "content --> " + review.getReviewcontent()));
         return reviewService.reviewIndex();
     }
 
