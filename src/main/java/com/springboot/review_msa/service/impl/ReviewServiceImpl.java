@@ -28,10 +28,17 @@ public class ReviewServiceImpl implements ReviewService {
 
     // 이 부분 insert 할 때 null 값 exception 처리 필요
     @Transactional
-    public void getWriteReview(ReviewDTO reviewDto) {
+    public Review getWriteReview(ReviewDTO reviewDto) {
         reviewDto.setReviewstar(reviewDto);
         Review review = Review.createReview( reviewDto, entityManager);
-        reviewRepositoryInterface.save(review);
+
+        System.out.println(this.getClass().getSimpleName());
+
+
+
+
+
+        return reviewRepositoryInterface.save(review);
     }
 
     public int getUpdateReviewYN(String rid) {
