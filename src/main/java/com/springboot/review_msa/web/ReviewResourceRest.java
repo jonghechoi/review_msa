@@ -46,6 +46,6 @@ public class ReviewResourceRest {
      */
     @GetMapping("test")
     public String test() {
-        return "test success last3";
+        return "test success last5";
     }
 }
