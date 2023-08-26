@@ -55,4 +55,4 @@ jobs:
       - name: SCP transfer
         run: scp -P 2222 *.war ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }}:/usr/local/tomcat/webapps/
       - name: Restart Application
-        run: ssh -i <(echo ${{ secrets.SSH_PRIVATE_KEY }}) -p 2222 ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "catalina.sh run"
+        run: ssh -i <(echo ${{ secrets.SSH_PRIVATE_KEY }}) -p 2222 ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} "/usr/local/tomcat/bin/catalina.sh run"
