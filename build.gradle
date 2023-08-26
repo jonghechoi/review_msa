@@ -66,6 +66,10 @@ sourceSets {
 	}
 }
 
+war {
+	enabled = false
+}
+
 //tasks.named('test') {
 //	useJUnitPlatform()
 //}
