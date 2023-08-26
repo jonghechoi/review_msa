@@ -40,4 +40,12 @@ public class ReviewResourceRest {
      * admin_review
      * @return
      */
+
+    /**
+     * CI/CD Test
+     */
+    @GetMapping("test")
+    public String test() {
+        return "test success~";
+    }
 }

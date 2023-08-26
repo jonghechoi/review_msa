@@ -27,7 +27,7 @@ public class ReviewResource {
         //boolean fileFlag = fileService.fileCheck(reviewDto);
 
         // 굳이 여기서 insert를 할 필요가 있나??
-        reviewService.getWriteReview(reviewDto);
+//        reviewService.getWriteReview(reviewDto);
 //        int reviewYN = reviewService.getUpdateReviewYN(reviewDto.getRid());
 //
 //        if(fileFlag) {
