@@ -40,40 +40,50 @@ public class Review {
     private String reviewmain;
     private double reviewstar;
 
-//    @Builder
-//    @QueryProjection
-//    public Review(Long id, String reviewid, String reviewcontent, String reviewcreatedate, String reviewmodifydate, String sid,
-//                  String mid, String rid, String reviewphoto, String reviewsphoto, String reviewmain, double reviewstar) {
-//        this.id = id;
-//        this.reviewid = reviewid;
-//        this.reviewcontent = reviewcontent;
-//        this.reviewcreatedate = reviewcreatedate;
-//        this.reviewmodifydate = reviewmodifydate;
-//        this.sid = sid;
-//        this.mid = mid;
-//        this.rid = rid;
-//        this.reviewphoto = reviewphoto;
-//        this.reviewsphoto = reviewsphoto;
-//        this.reviewmain = reviewmain;
-//        this.reviewstar = reviewstar;
-//    }
+    @Builder
+    @QueryProjection
+    public Review(Long id, String reviewid, String reviewcontent, String reviewcreatedate, String reviewmodifydate, String sid,
+                  String mid, String rid, String reviewphoto, String reviewsphoto, String reviewmain, double reviewstar) {
+        this.id = id;
+        this.reviewid = reviewid;
+        this.reviewcontent = reviewcontent;
+        this.reviewcreatedate = reviewcreatedate;
+        this.reviewmodifydate = reviewmodifydate;
+        this.sid = sid;
+        this.mid = mid;
+        this.rid = rid;
+        this.reviewphoto = reviewphoto;
+        this.reviewsphoto = reviewsphoto;
+        this.reviewmain = reviewmain;
+        this.reviewstar = reviewstar;
+    }
 
-    public static Review createReview(ReviewDTO reviewDTO, EntityManager entityManager) {
+    public static Review createReview(ReviewDTO r, EntityManager entityManager) {
         Query query = entityManager.createNativeQuery("SELECT SEQU_REVIEW_RID.NEXTVAL FROM DUAL");
         Long nextVal = ((BigDecimal) query.getSingleResult()).longValue();
 
         Review review = new Review();
         review.setReviewid("REVIEW_" + String.format("%04d", nextVal));
-        review.setReviewcontent(reviewDTO.getReviewcontent());
-        review.setSid(reviewDTO.getSid());
-        review.setMid(reviewDTO.getMid());
-        review.setRid(reviewDTO.getRid());
-        review.setReviewphoto(reviewDTO.getReviewphoto());
-        review.setReviewsphoto(reviewDTO.getReviewsphoto());
-        review.setReviewstar(reviewDTO.getReviewstar());
+        review.setReviewcontent(r.getReviewcontent());
+        review.setSid(r.getSid());
+        review.setMid(r.getMid());
+        review.setRid(r.getRid());
+        review.setReviewphoto(r.getReviewphoto());
+        review.setReviewsphoto(r.getReviewsphoto());
+        review.setReviewstar(r.getReviewstar());
         review.setReviewcreatedate(LocalDate.now().toString());
 
         entityManager.persist(review);
         return review;
+    }
+
+    public static Review updateReview(Review r, ReviewDTO reviewDTO,EntityManager entityManager) {
+        r.setReviewcontent(reviewDTO.getReviewcontent());
+        r.setReviewstar(reviewDTO.getReviewstar());
+        r.setReviewphoto(reviewDTO.getReviewphoto());
+        r.setReviewsphoto(reviewDTO.getReviewsphoto());
+        r.setReviewmodifydate(LocalDate.now().toString());
+        entityManager.persist(r);
+        return r;
     }
 }

@@ -1,4 +1,4 @@
-package com.springboot.review_msa.config;
+package com.springboot.review_msa.config.jpa;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 

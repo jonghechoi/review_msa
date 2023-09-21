@@ -29,6 +29,14 @@ repositories {
 }
 
 dependencies {
+	// Redis
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+
+
+	// logback
+	implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+
 	// QueryDSL
 	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
 	annotationProcessor(
@@ -44,6 +52,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testCompileOnly 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'
+	testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.20.0'
+
 
 	// oracle
 	implementation group: 'com.oracle.database.jdbc', name: 'ojdbc8', version: '21.3.0.0'

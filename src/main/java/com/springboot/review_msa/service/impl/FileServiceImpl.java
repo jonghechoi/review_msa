@@ -27,9 +27,9 @@ public class FileServiceImpl {
 	}
 
 	/**
-	 * FileChecK
+	 * FileCheck
 	 */
-	public boolean fileCheck(ReviewDTO reviewDto) throws Exception {
+	public Object fileCheck(ReviewDTO reviewDto) throws Exception {
 		if(reviewDto.getReviewfile1().getOriginalFilename() != null
 				&& !reviewDto.getReviewfile1().getOriginalFilename().equals("")) {
 
@@ -39,12 +39,9 @@ public class FileServiceImpl {
 
 			reviewDto.setReviewphoto(reviewphoto);
 			reviewDto.setReviewsphoto(reviewsphoto);
-
-			return true;
-
-//			log.info("reviewVo.getReviewphoto() -> {}", reviewDto.getReviewphoto());
-//			log.info("reviewVo.getReviewsphoto() -> {}", reviewDto.getReviewsphoto());
+		}else {
+			System.out.println("No File Upload");
 		}
-		return false;
+		return reviewDto;
 	}
 }

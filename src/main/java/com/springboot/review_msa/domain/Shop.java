@@ -46,13 +46,14 @@ public class Shop {
     int smealfee;
     int lunch;
     int dinner;
+    int adgrade;
 
     @Builder
     public Shop(String sid, String roleid, String screatedate, String sdeleteyn, String aconfirmyn, String aconfirmfinalyn,
                 String confirmyn, String spass, String sname, String sphone, String sloc, String slocx, String slocy,
                 String slocshort, String sintro, String smodifydate, String sclosingdate, String swebsite, String sfoodstyle,
                 String smphoto, String sopeninghour, String sclosinghour, String sopeninghourString, String sdepositString,
-                String smealfeeString, String lunchString, String dinnerString, int rno, int sdeposit, int smealfee, int lunch, int dinner) {
+                String smealfeeString, String lunchString, String dinnerString, int rno, int sdeposit, int smealfee, int lunch, int dinner, int adgrade) {
         this.sid = sid;
         this.roleid = roleid;
         this.screatedate = screatedate;
@@ -85,5 +86,6 @@ public class Shop {
         this.smealfee = smealfee;
         this.lunch = lunch;
         this.dinner = dinner;
+        this.adgrade = adgrade;
     }
 }

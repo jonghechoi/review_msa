@@ -1,4 +1,4 @@
-package com.springboot.review_msa.config;
+package com.springboot.review_msa.config.jpa;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

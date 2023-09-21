@@ -5,7 +5,7 @@ import com.springboot.review_msa.domain.QShop;
 import com.springboot.review_msa.web.dto.ReviewDTO;
 import com.springboot.review_msa.domain.QMember;
 import com.springboot.review_msa.domain.QReview;
-import com.springboot.review_msa.config.CustomJPAQueryFactory;
+import com.springboot.review_msa.config.jpa.CustomJPAQueryFactory;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.Expressions;
 import lombok.RequiredArgsConstructor;
@@ -45,7 +45,7 @@ public class ReviewRepository {
                 )
                 .from(qReview)
                 .innerJoin(qMember).on(qReview.mid.eq(qMember.mid))
-                .where(qReview.reviewmain.eq("Y"))
+                //.where(qReview.reviewmain.eq("Y"))
                 .fetch();
     }
 
@@ -71,7 +71,7 @@ public class ReviewRepository {
         return (long)1.0;
     }
 
-    public long getUpdateReviewYN(String rid) {
+    public long updateReviewYN(String rid) {
         return jpaQueryFactory
                 .update(qReservation)
                 .set(qReservation.reviewyn, "Y")
@@ -79,7 +79,7 @@ public class ReviewRepository {
                 .execute();
     }
 
-    public ReviewDTO reviewSelect(String rid) {
+    public ReviewDTO selectReview(String rid) {
         return jpaQueryFactory
                 .select(
                         Projections.bean(

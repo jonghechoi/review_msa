@@ -1,56 +1,74 @@
 package com.springboot.review_msa.web;
 
+import com.springboot.review_msa.aop.exception.BusinessException;
+import com.springboot.review_msa.aop.exception.CommonErrorCode;
+import com.springboot.review_msa.domain.Review;
 import com.springboot.review_msa.service.impl.FileServiceImpl;
 import com.springboot.review_msa.service.impl.ReviewServiceImpl;
 import com.springboot.review_msa.web.dto.ReviewDTO;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.Optional;
 
 @Controller
 @AllArgsConstructor
+@RequestMapping("/api/review")
 public class ReviewResource {
     private FileServiceImpl fileService;
     private ReviewServiceImpl reviewService;
 
     /**
-     * write_review_proc
+     * writeReview
      */
-    @PostMapping("write_review")
-    public String write_review_proc(ReviewDTO reviewDto, RedirectAttributes redirectAttributes) throws Exception{
+    @PostMapping("composition")
+    public String writeReview(ReviewDTO reviewDto, RedirectAttributes redirectAttributes) throws Exception{
+        reviewDto = (ReviewDTO)fileService.fileCheck(reviewDto);
 
-        //boolean fileFlag = fileService.fileCheck(reviewDto);
+        Optional<Review> result = reviewService.writeReview(reviewDto);
+        int reviewYN = reviewService.getUpdateReviewYN(reviewDto.getRid());
 
-        // 굳이 여기서 insert를 할 필요가 있나??
-//        reviewService.getWriteReview(reviewDto);
-//        int reviewYN = reviewService.getUpdateReviewYN(reviewDto.getRid());
-//
-//        if(fileFlag) {
-//
-//        }
+        if (result != null && result.isPresent()) {
+            if(reviewYN == 1) {
+                fileService.fileSave(reviewDto);
+                redirectAttributes.addFlashAttribute("reviewWrite", "ok");
+                return "redirect:/mydining_visited";
+            }
+        }else {
+            throw new BusinessException(CommonErrorCode.DATA_NOT_INSERTED);
+        }
+        return "redirect:/mydining_visited";
+    }
 
+    @PutMapping("update/{rid}")
+    public String updateReview(RedirectAttributes redirectAttributes,
+                               ReviewDTO reviewDTO,
+                               @PathVariable String rid) {
+        Optional<Review> review = reviewService.updateReview(reviewDTO, rid);
+        if(review.isPresent()) {
+            redirectAttributes.addFlashAttribute("reviewUpdate", "ok");
+            return "redirect:/mydining_visited";
+        }else {
+            throw new BusinessException(CommonErrorCode.DATA_NOT_UPDATED);
+        }
+    }
 
-//        if (result == 1 && reviewYN == 1) {
-//            fileService.fileSave(reviewDto);
-//            redirectAttributes.addFlashAttribute("reviewWrite", "ok");
-//            return "redirect:/mydining_visited";
-//        }
-
-        //return "redirect:/mydining_visited";
-        return "hi~~~~~~~~~~~~~";
+    @GetMapping("{rid}")
+    public String selectReview(@PathVariable String rid, Model model) {
+        ReviewDTO reviewDto = reviewService.selectReview(rid);
+        model.addAttribute("reviewVo", reviewDto);
+        return "/pages/mydining/write_review";
     }
 
     /**
      * admin_review
-     * @return
      */
     @GetMapping("admin_review")
-    public String admin_review() {
+    public String adminReview() {
         return "/pages/admin/admin_review";
     }
 
