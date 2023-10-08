@@ -1,18 +1,22 @@
 package com.springboot.review_msa.domain;
 
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Getter
 @Table(name="RESERVATION")
 @NoArgsConstructor
 public class Reservation {
     @Id
     private String rid;
+    @OneToMany(mappedBy = "rid", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Review> reviews = new ArrayList<>();
     private String rdate;
     private String rtime;
     private String rmodifydate;
@@ -25,7 +29,7 @@ public class Reservation {
     private String rtabletype;
     private String rstatus;
     private String reviewyn;
-    private int rno;
+//    private int rno;
     private int guestnumber;
 
     @Builder
@@ -45,7 +49,7 @@ public class Reservation {
         this.rtabletype = rtabletype;
         this.rstatus = rstatus;
         this.reviewyn = reviewyn;
-        this.rno = rno;
+//        this.rno = rno;
         this.guestnumber = guestnumber;
     }
 }

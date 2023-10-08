@@ -4,7 +4,6 @@ import com.springboot.review_msa.domain.Review;
 import com.springboot.review_msa.repository.ReviewRepository;
 import com.springboot.review_msa.repository.ReviewRepositoryInterface;
 import com.springboot.review_msa.repository.ShopRepository;
-import com.springboot.review_msa.service.namePlease.ReviewMainLogic;
 import com.springboot.review_msa.web.dto.ReviewDTO;
 import com.springboot.review_msa.web.dto.ShopDTO;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +14,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import javax.persistence.EntityManager;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -66,14 +64,10 @@ class ReviewServiceImplTest {
     @Test
     void writeReview() {
         // given
-        Review review = new Review(1L, "REVIEW_0001", "its really good",
-                "23/09/13", "23/09/13", "S_0001",
-                "M_0001", "R_0001", "aaaaaaaaaaaaa.jpeg",
-                "aaaaaaaaaaaaa.jpeg", "Y", 3.7);
-
-
-
-
+//        Review review = new Review(1L, "REVIEW_0001", "its really good",
+//                "23/09/13", "23/09/13", "S_0001",
+//                "M_0001", "R_0001", "aaaaaaaaaaaaa.jpeg",
+//                "aaaaaaaaaaaaa.jpeg", "Y", 3.7);
     }
 
     @Test

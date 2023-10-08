@@ -1,91 +1,55 @@
 package com.springboot.review_msa.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import reactor.util.annotation.Nullable;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @Table(name="SHOP")
 @NoArgsConstructor
+@AllArgsConstructor
 public class Shop {
     @Id
-    String sid;
-    String roleid;
-    String screatedate;
-    String sdeleteyn;
-    String aconfirmyn;
-    String aconfirmfinalyn;
-    String confirmyn;
-    String spass;
-    String sname;
-    String sphone;
-    String sloc;
-    String slocx;
-    String slocy;
-    String slocshort;
-    String sintro;
-    String smodifydate;
-    String sclosingdate;
-    String swebsite;
-    String sfoodstyle;
-    String smphoto;
-    String sopeninghour;
-    String sclosinghour;
-    String sopeninghourString;
-    String sdepositString;
-    String smealfeeString;
-    String lunchString;
-    String dinnerString;
-    int rno;
-    int sdeposit;
-    int smealfee;
-    int lunch;
-    int dinner;
-    int adgrade;
-
-    @Builder
-    public Shop(String sid, String roleid, String screatedate, String sdeleteyn, String aconfirmyn, String aconfirmfinalyn,
-                String confirmyn, String spass, String sname, String sphone, String sloc, String slocx, String slocy,
-                String slocshort, String sintro, String smodifydate, String sclosingdate, String swebsite, String sfoodstyle,
-                String smphoto, String sopeninghour, String sclosinghour, String sopeninghourString, String sdepositString,
-                String smealfeeString, String lunchString, String dinnerString, int rno, int sdeposit, int smealfee, int lunch, int dinner, int adgrade) {
-        this.sid = sid;
-        this.roleid = roleid;
-        this.screatedate = screatedate;
-        this.sdeleteyn = sdeleteyn;
-        this.aconfirmyn = aconfirmyn;
-        this.aconfirmfinalyn = aconfirmfinalyn;
-        this.confirmyn = confirmyn;
-        this.spass = spass;
-        this.sname = sname;
-        this.sphone = sphone;
-        this.sloc = sloc;
-        this.slocx = slocx;
-        this.slocy = slocy;
-        this.slocshort = slocshort;
-        this.sintro = sintro;
-        this. smodifydate = smodifydate;
-        this.sclosingdate = sclosingdate;
-        this.swebsite = swebsite;
-        this.sfoodstyle = sfoodstyle;
-        this.smphoto = smphoto;
-        this.sopeninghour = sopeninghour;
-        this.sclosinghour = sclosinghour;
-        this.sopeninghourString = sopeninghourString;
-        this.sdepositString = sdepositString;
-        this.smealfeeString = smealfeeString;
-        this.lunchString = lunchString;
-        this.dinnerString = dinnerString;
-        this.rno = rno;
-        this.sdeposit = sdeposit;
-        this.smealfee = smealfee;
-        this.lunch = lunch;
-        this.dinner = dinner;
-        this.adgrade = adgrade;
-    }
+    private String sid;
+    @OneToMany(mappedBy = "sid", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Review> reviews = new ArrayList<>();
+    private String roleid;
+    private String screatedate;
+    private String sdeleteyn;
+    private String aconfirmyn;
+    private String aconfirmfinalyn;
+    private String sconfirmyn;
+    private String spass;
+    private String sname;
+    private String sphone;
+    private String sloc;
+    private String slocx;
+    private String slocy;
+    private String slocshort;
+    private String sintro;
+    private String smodifydate;
+    private String sclosingdate;
+    private String swebsite;
+    private String sfoodstyle;
+    private String smphoto;
+    private String sopeninghour;
+    private String sclosinghour;
+//    private String sopeninghourString;
+//    private String sdepositString;
+//    private String smealfeeString;
+//    private String lunchString;
+//    private String dinnerString;
+//    private int rno;
+    private int sdeposit;
+    private Integer smealfee;
+    private int lunch;
+    private int dinner;
+    private int adgrade;
 }

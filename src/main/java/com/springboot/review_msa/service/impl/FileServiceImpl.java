@@ -30,6 +30,9 @@ public class FileServiceImpl {
 	 * FileCheck
 	 */
 	public Object fileCheck(ReviewDTO reviewDto) throws Exception {
+		System.out.println("#".repeat(100));
+		System.out.println("reviewDto.getReviewfile1().getOriginalFilename() --> " + reviewDto.getReviewfile1().getOriginalFilename());
+		System.out.println("#".repeat(100));
 		if(reviewDto.getReviewfile1().getOriginalFilename() != null
 				&& !reviewDto.getReviewfile1().getOriginalFilename().equals("")) {
 

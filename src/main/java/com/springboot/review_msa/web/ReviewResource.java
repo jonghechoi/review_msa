@@ -22,33 +22,39 @@ public class ReviewResource {
     private FileServiceImpl fileService;
     private ReviewServiceImpl reviewService;
 
-    /**
-     * writeReview
-     */
-    @PostMapping("composition")
-    public String writeReview(ReviewDTO reviewDto, RedirectAttributes redirectAttributes) throws Exception{
-        reviewDto = (ReviewDTO)fileService.fileCheck(reviewDto);
+//    @GetMapping("write_review/{rid}")
+//    public String write_review(@PathVariable String rid, Model model) {
+//        ReviewDto reviewDto = reviewService.getReviewSelect(rid);
+//        model.addAttribute("reviewVo", reviewDto);
+//
+//        return "/pages/mydining/write_review";
+//    }
 
-        Optional<Review> result = reviewService.writeReview(reviewDto);
-        int reviewYN = reviewService.getUpdateReviewYN(reviewDto.getRid());
+//    @PostMapping("{reviewid}")
+//    public String writeReview(ReviewDTO reviewDto, @PathVariable String reviewid,
+//                              RedirectAttributes redirectAttributes) throws Exception{
+//        reviewDto = (ReviewDTO)fileService.fileCheck(reviewDto);
+//
+//        Optional<Review> result = reviewService.writeReview(reviewDto);
+//        int reviewYN = reviewService.getUpdateReviewYN(reviewDto.getRid());
+//
+//        if (result != null && result.isPresent()) {
+//            if(reviewYN == 1) {
+//                fileService.fileSave(reviewDto);
+//                redirectAttributes.addFlashAttribute("reviewWrite", "ok");
+//                return "redirect:/mydining_visited";
+//            }
+//        }else {
+//            throw new BusinessException(CommonErrorCode.DATA_NOT_INSERTED);
+//        }
+//        return null;
+//    }
 
-        if (result != null && result.isPresent()) {
-            if(reviewYN == 1) {
-                fileService.fileSave(reviewDto);
-                redirectAttributes.addFlashAttribute("reviewWrite", "ok");
-                return "redirect:/mydining_visited";
-            }
-        }else {
-            throw new BusinessException(CommonErrorCode.DATA_NOT_INSERTED);
-        }
-        return "redirect:/mydining_visited";
-    }
-
-    @PutMapping("update/{rid}")
+    @PutMapping("{reviewid}")
     public String updateReview(RedirectAttributes redirectAttributes,
                                ReviewDTO reviewDTO,
-                               @PathVariable String rid) {
-        Optional<Review> review = reviewService.updateReview(reviewDTO, rid);
+                               @PathVariable String reviewid) {
+        Optional<Review> review = reviewService.updateReview(reviewDTO, reviewid);
         if(review.isPresent()) {
             redirectAttributes.addFlashAttribute("reviewUpdate", "ok");
             return "redirect:/mydining_visited";
@@ -57,17 +63,14 @@ public class ReviewResource {
         }
     }
 
-    @GetMapping("{rid}")
-    public String selectReview(@PathVariable String rid, Model model) {
-        ReviewDTO reviewDto = reviewService.selectReview(rid);
+    @GetMapping("{reviewid}")
+    public String selectReview(@PathVariable String reviewid, Model model) {
+        ReviewDTO reviewDto = reviewService.selectReview(reviewid);
         model.addAttribute("reviewVo", reviewDto);
         return "/pages/mydining/write_review";
     }
 
-    /**
-     * admin_review
-     */
-    @GetMapping("admin_review")
+    @GetMapping("admin-review")
     public String adminReview() {
         return "/pages/admin/admin_review";
     }

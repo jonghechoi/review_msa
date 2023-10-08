@@ -13,7 +13,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Repository
 public class ReviewRedisRepository<T> {
@@ -22,7 +21,6 @@ public class ReviewRedisRepository<T> {
     private final ObjectMapper objectMapper;
     private final Map<String, T> reviewMap = new HashMap<>();
     private final JSONParser parser = new JSONParser();
-
 
     public ReviewRedisRepository(Class<T> targetType, RedisTemplate<String, T> redisTemplate, ObjectMapper objectMapper) {
         this.targetType = targetType;

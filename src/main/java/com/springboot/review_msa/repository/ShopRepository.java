@@ -16,6 +16,8 @@ public class ShopRepository {
     private final QShop qShop;
 
     public List<ShopDTO> getShopAdvertisementGrade() {
+        System.out.println("#".repeat(100));
+        System.out.println("###### getShopAdvertisementGrade 실행 ######");
         return jpaQueryFactory
                 .select(
                         Projections.fields(ShopDTO.class,

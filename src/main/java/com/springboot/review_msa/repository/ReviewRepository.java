@@ -27,6 +27,8 @@ public class ReviewRepository {
     private final QShop qShop;
 
     public List<ReviewDTO> getReivewListIndex() {
+        System.out.println("#".repeat(100));
+        System.out.println("###### getReivewListIndex 실행 ######");
         return jpaQueryFactory
                 .select(
                         Projections.fields(ReviewDTO.class,
@@ -36,24 +38,20 @@ public class ReviewRepository {
                             qReview.reviewstar,
                             qReview.reviewcreatedate,
                             qReview.reviewmodifydate,
-                            qReview.sid,
-                            qReview.mid,
-                            qReview.rid,
+                            qReview.sid.sid, // 이부분 qReview.sid만 하면 에러였음
+                            qReview.mid.mid,
+                            qReview.rid.rid,
                             qReview.reviewphoto,
                             qReview.reviewsphoto,
                             qMember.mname)
                 )
                 .from(qReview)
-                .innerJoin(qMember).on(qReview.mid.eq(qMember.mid))
+                .innerJoin(qMember).on(qReview.mid.eq(qMember))
                 //.where(qReview.reviewmain.eq("Y"))
                 .fetch();
     }
 
     public long writeReview(ReviewDTO reviewDTO) {
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-        System.out.println("으아으아으아으아으아으아으아으아으아으아 --> " + Expressions.stringTemplate("to_char({0}, '0000')", Expressions.numberTemplate(Integer.class, "SEQU_REVIEW_RID.nextval")).trim());
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-
         String query = "INSERT INTO Review (reviewid, reviewcontent, reviewstar, sid, mid, rid, reviewphoto, reviewsphoto, reviewmain) " +
                 "VALUES (:reviewid, :reviewcontent, :reviewstar, :sid, :mid, :rid, :reviewphoto, :reviewsphoto, :reviewmain)";
 
@@ -80,6 +78,8 @@ public class ReviewRepository {
     }
 
     public ReviewDTO selectReview(String rid) {
+        System.out.println("#".repeat(100));
+        System.out.println("###### selectReview 실행 ######");
         return jpaQueryFactory
                 .select(
                         Projections.bean(
